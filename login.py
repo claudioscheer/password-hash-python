@@ -8,8 +8,7 @@ def auth_user(username, password):
     users = json_to_dict("users.json")
     if username in users:
         user = users[username]
-        if compare_hash(user.get("password"), password):
-            return True
+        return compare_hash(user.get("password"), password)
     return False
 
 

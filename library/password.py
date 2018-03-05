@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# https://github.com/P-H-C/phc-winner-argon2
 import argon2
 import os
 if __name__ == "__main__":
@@ -8,7 +7,11 @@ else:
     from ._utils import SALT_SIZE, bytes_to_hex
 
 
-# http://argon2-cffi.readthedocs.io/en/stable/api.html#argon2.low_level.hash_secret
+"""
+Docs:
+    - https://github.com/P-H-C/phc-winner-argon2
+    - http://argon2-cffi.readthedocs.io/en/stable/api.html#argon2.low_level.hash_secret
+"""
 def get_hash(password, salt):
     password_hash = argon2.low_level.hash_secret(
         password.encode(),
@@ -23,12 +26,16 @@ def get_hash(password, salt):
 
 
 def get_salt():
-    # Why salt isn't needed
-    # https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
     return bytes_to_hex(os.urandom(SALT_SIZE))
 
 
-# http://argon2-cffi.readthedocs.io/en/stable/api.html#argon2.low_level.verify_secret
+"""
+Why salt isn't needed?
+    - https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
+
+Docs:
+    - http://argon2-cffi.readthedocs.io/en/stable/api.html#argon2.low_level.verify_secret
+"""
 def compare_hash(hash, password):
     try:
         return argon2.low_level.verify_secret(hash.encode(), password.encode(), argon2.low_level.Type.ID)
