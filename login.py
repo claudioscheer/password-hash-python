@@ -2,6 +2,7 @@
 import json
 from library._utils import json_to_dict
 from library.password import compare_hash
+import getpass
 
 
 def auth_user(username, password):
@@ -14,6 +15,6 @@ def auth_user(username, password):
 
 if __name__ == "__main__":
     username = input("Username: ")
-    password = input("Password: ")
+    password = getpass.getpass("Password: ")
     is_auth = auth_user(username, password)
     print(is_auth)

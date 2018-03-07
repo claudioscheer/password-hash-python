@@ -7,6 +7,9 @@ else:
     from ._utils import SALT_SIZE, bytes_to_hex
 
 
+#https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet
+
+
 """
 Docs:
     - https://github.com/P-H-C/phc-winner-argon2
@@ -19,7 +22,7 @@ def get_hash(password, salt):
         time_cost=10,
         memory_cost=32*1024,
         parallelism=1,
-        hash_len=128,
+        hash_len=64,
         type=argon2.low_level.Type.ID
     )
     return password_hash.decode()

@@ -23,5 +23,5 @@ def dict_to_json(dict):
 
 
 def save_file_json(file, dict):
-    with open(file, 'w') as json_file:
+    with open(file, "w") as json_file:
         json_file.write(dict_to_json(dict))
